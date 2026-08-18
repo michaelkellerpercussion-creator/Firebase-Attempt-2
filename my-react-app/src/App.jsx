@@ -60,7 +60,7 @@ export default function App() {
     <div
       style={{
         minHeight: "100vh",
-        background: "linear-gradient(135deg, #fff7ed 0%, #fde68a 100%)", // Bright warmth gradient
+        background: "linear-gradient(135deg, #ffd82f 0%, #e43e45 100%)",
         padding: "40px 20px",
         fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
         color: "#1e293b",
@@ -71,7 +71,7 @@ export default function App() {
         style={{
           maxWidth: "960px",
           margin: "0 auto",
-          background: "rgba(255, 255, 255, 0.85)", // Semi-transparent glass container
+          background: "rgba(255, 255, 255, 0.85)",
           backdropFilter: "blur(8px)",
           borderRadius: "24px",
           padding: "30px",
@@ -104,7 +104,7 @@ export default function App() {
         <div
           style={{
             padding: "20px",
-            background: "linear-gradient(135deg, #fef3c7 0%, #fcd34d 100%)",
+            background: "linear-gradient(135deg, #ffd82f 0%, #e43e45 100%)",
             borderRadius: "16px",
             marginBottom: "25px",
             boxShadow: "0 4px 12px rgba(217, 119, 6, 0.2)",
@@ -115,7 +115,7 @@ export default function App() {
 
         {currentUser ? (
           <>
-            {/* Friendly Navigation */}
+            {/* NAv */}
             <nav
               style={{
                 display: "flex",
@@ -132,7 +132,7 @@ export default function App() {
                   label: `Cart (${cart.reduce((sum, item) => sum + item.quantity, 0)})`,
                 },
                 { id: "orders", label: "Past Orders" },
-                { id: "profile", label: "Account & Prefarences" },
+                { id: "profile", label: "Account & Preferences" },
               ].map((tab) => (
                 <button
                   key={tab.id}

@@ -10,7 +10,7 @@ import {
 
 const ordersCollection = collection(db, "orders");
 
-// Create Orde
+// Create Order
 export const createOrder = async (userId, cartItems, totalPrice) => {
   const orderData = {
     userId: userId,

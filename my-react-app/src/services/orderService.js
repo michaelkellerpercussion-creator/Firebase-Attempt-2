@@ -10,7 +10,7 @@ import {
 
 const ordersCollection = collection(db, "orders");
 
-// Create Order (Part 5)
+// Create Orde
 export const createOrder = async (userId, cartItems, totalPrice) => {
   const orderData = {
     userId: userId,
@@ -23,7 +23,7 @@ export const createOrder = async (userId, cartItems, totalPrice) => {
   return docRef.id;
 };
 
-// Read User Order History (Part 5)
+// Read User Order History
 export const getUserOrders = async (userId) => {
   const q = query(
     ordersCollection,

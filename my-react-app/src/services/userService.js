@@ -7,7 +7,6 @@ import {
 } from "firebase/auth";
 import { doc, setDoc, getDoc, updateDoc, deleteDoc } from "firebase/firestore";
 
-// Register + Create User Document (Part 2 & Part 3 - Create)
 export const registerUser = async (email, password, userData) => {
   const userCredential = await createUserWithEmailAndPassword(
     auth,
@@ -27,30 +26,28 @@ export const registerUser = async (email, password, userData) => {
   return user;
 };
 
-// Login (Part 2)
+// Login
 export const loginUser = (email, password) => {
   return signInWithEmailAndPassword(auth, email, password);
 };
 
-// Logout (Part 2)
 export const logoutUser = () => {
   return signOut(auth);
 };
 
-// Read Profile (Part 3 - Read)
 export const getUserProfile = async (uid) => {
   const docRef = doc(db, "users", uid);
   const docSnap = await getDoc(docRef);
   return docSnap.exists() ? docSnap.data() : null;
 };
 
-// Update Profile (Part 3 - Update)
+// Update Profile
 export const updateUserProfile = async (uid, updateData) => {
   const userRef = doc(db, "users", uid);
   await updateDoc(userRef, updateData);
 };
 
-// Delete Account (Part 3 - Delete)
+// Delete Account
 export const deleteUserAccount = async () => {
   const user = auth.currentUser;
   if (!user) return;

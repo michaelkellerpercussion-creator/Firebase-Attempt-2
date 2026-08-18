@@ -12,7 +12,7 @@ export function Auth({ currentUser }) {
     try {
       if (isRegistering) {
         await registerUser(email, password, { name });
-        alert("Welcome aboard! 🎉 Your account is ready.");
+        alert("Welcome! 🎉 Your account is ready.");
       } else {
         await loginUser(email, password);
       }

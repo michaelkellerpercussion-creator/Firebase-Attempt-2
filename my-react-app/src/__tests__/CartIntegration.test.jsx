@@ -35,32 +35,35 @@ vi.mock("../services/orderService", () => ({
 
 vi.mock("../services/userService", () => ({
   getUserProfile: vi.fn().mockResolvedValue({ name: "Shopper", address: "" }),
+  registerUser: vi.fn(),
+  loginUser: vi.fn(),
+  logoutUser: vi.fn(),
 }));
 
 describe("Cart Integration Test", () => {
-  it('updates the Bag tab count and lists product when "Add to Bag" is clicked', async () => {
+  it('updates the Cart tab count and lists product when "Add to Cart" is clicked', async () => {
     const user = userEvent.setup();
     render(<App />);
 
-    // 1. Verify initial cart bag count is 0
+    // 1. Verify initial cart count is 0
     const bagNavButton = await screen.findByRole("button", {
-      name: /🛒 Bag \(0\)/i,
+      name: /Cart \(0\)/i,
     });
     expect(bagNavButton).toBeInTheDocument();
 
-    // 2. Locate product and click "Add to Bag"
+    // 2. Locate product and click "Add to Cart"
     const addToBagButton = await screen.findByRole("button", {
-      name: /🛒 Add to Bag/i,
+      name: /Add to Cart/i,
     });
     await user.click(addToBagButton);
 
-    // 3. Assert Bag counter increases to 1
+    // 3. Assert Cart counter increases to 1
     expect(
-      screen.getByRole("button", { name: /🛒 Bag \(1\)/i }),
+      screen.getByRole("button", { name: /Cart \(1\)/i }),
     ).toBeInTheDocument();
 
     // 4. Navigate to Cart view and verify product item details exist
-    await user.click(screen.getByRole("button", { name: /🛒 Bag \(1\)/i }));
+    await user.click(screen.getByRole("button", { name: /Cart \(1\)/i }));
     expect(screen.getByText("Cozy Knit Sweater")).toBeInTheDocument();
     expect(screen.getByText("Total:")).toBeInTheDocument();
   });

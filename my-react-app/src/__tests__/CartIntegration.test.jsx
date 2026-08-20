@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { describe, it, expect, vi } from "vitest";
 import App from "../App";
 
-// Mock Firebase auth & Firestore services
+// Firebase auth & Firestore services
 vi.mock("../firebase", () => ({
   auth: {},
   db: {},
@@ -21,9 +21,9 @@ vi.mock("../services/productService", () => ({
   fetchProducts: vi.fn().mockResolvedValue([
     {
       id: "prod-1",
-      title: "Cozy Knit Sweater",
+      title: "Knit Sweater",
       price: 49.99,
-      description: "Soft wool sweater",
+      description: "wool sweater",
       imageUrl: "https://example.com/sweater.jpg",
     },
   ]),
@@ -45,26 +45,26 @@ describe("Cart Integration Test", () => {
     const user = userEvent.setup();
     render(<App />);
 
-    // 1. Verify initial cart count is 0
+    // Verify initial cart count is 0
     const bagNavButton = await screen.findByRole("button", {
       name: /Cart \(0\)/i,
     });
     expect(bagNavButton).toBeInTheDocument();
 
-    // 2. Locate product and click "Add to Cart"
+    // Locate product and click "Add to Cart"
     const addToBagButton = await screen.findByRole("button", {
       name: /Add to Cart/i,
     });
     await user.click(addToBagButton);
 
-    // 3. Assert Cart counter increases to 1
+    // Cart counter increases to 1
     expect(
       screen.getByRole("button", { name: /Cart \(1\)/i }),
     ).toBeInTheDocument();
 
-    // 4. Navigate to Cart view and verify product item details exist
+    // 4. Navigate to CArt and verify product item exist
     await user.click(screen.getByRole("button", { name: /Cart \(1\)/i }));
-    expect(screen.getByText("Cozy Knit Sweater")).toBeInTheDocument();
+    expect(screen.getByText("Knit Sweater")).toBeInTheDocument();
     expect(screen.getByText("Total:")).toBeInTheDocument();
   });
 });

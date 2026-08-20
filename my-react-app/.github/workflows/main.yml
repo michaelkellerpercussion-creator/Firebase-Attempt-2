@@ -9,9 +9,8 @@ on:
       - main
 
 jobs:
-  # -------------------------------------------------------------
-  # JOB 1: Continuous Integration (CI) - Build & TDD Unit Testing
-  # -------------------------------------------------------------
+  # CI
+
   build-and-test:
     name: Build & Test (CI)
     runs-on: ubuntu-latest
@@ -35,9 +34,8 @@ jobs:
       - name: Build Project
         run: npm run build
 
-  # -------------------------------------------------------------
-  # JOB 2: Continuous Deployment (CD) - Deploy to Vercel
-  # -------------------------------------------------------------
+  # CD
+
   deploy:
     name: Deploy to Vercel (CD)
     needs: build-and-test
